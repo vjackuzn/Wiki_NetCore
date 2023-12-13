@@ -1,4 +1,5 @@
 using Backend_NET.Data;
+using Backend_NET.Dtos;
 using Backend_NET.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,9 +18,21 @@ public class ArticleController : ControllerBase
     }
 
     [HttpGet("GetArticles")]
-    public IEnumerable<Article> GetUsers()
+    public IEnumerable<ArticleDto> GetArticles()
     {
         IEnumerable<Article> articles = _entityFramework.Articles.ToList<Article>();
-        return articles;
+        List<ArticleDto> response = new List<ArticleDto>();
+
+        foreach(Article article in articles)
+        {
+            response.Add(new ArticleDto
+            {
+                Title = article.Title,
+                Description = article.Description,
+                CreatedAt = article.CreatedAt
+            });
+        }
+
+        return response;
     }
 }
