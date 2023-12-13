@@ -9,19 +9,18 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './article-list.component.html',
   styleUrl: './article-list.component.css',
-  providers:  [ ArticleService ]
+  providers: [ArticleService],
 })
-export class ArticleListComponent implements OnInit{
-  articles?: Article[]
-  
+export class ArticleListComponent implements OnInit {
+  articles?: Article[];
+
   constructor(private articleService: ArticleService) {}
 
   ngOnInit(): void {
-    this.articleService.getAllArticles()
-      .subscribe({
-        next: (response) => {
-          this.articles = response
-        }
-      });
+    this.articleService.getAllArticles().subscribe({
+      next: (response) => {
+        this.articles = response;
+      },
+    });
   }
 }
