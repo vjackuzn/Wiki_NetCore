@@ -39,8 +39,6 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
             console.error('Error fetching article details:', err);
           },
         });
-    } else {
-      console.error('Unexpected navigation error');
     }
   }
 

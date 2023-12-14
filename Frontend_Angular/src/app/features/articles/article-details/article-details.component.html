@@ -1,13 +1,23 @@
 <div class="container">
-  <a [routerLink]="['/']" class="btn btn-primary my-5"
-    >Return to All Articles</a
-  >
-
-  <ng-container *ngIf="articleDetails">
+  <ng-container *ngIf="articleDetails; else errorTemplate">
+    <a [routerLink]="['/']" class="btn btn-primary my-5"
+      >Return to All Articles</a
+    >
     <h1 class="mb-5">{{ articleDetails.title }}</h1>
     <p>{{ articleDetails.description }}</p>
     <footer class="blockquote-footer mt-5">
       {{ articleDetails.createdAt | date : "yyyy-MM-dd" }}
     </footer>
   </ng-container>
+
+  <ng-template #errorTemplate>
+    <div class="alert alert-danger mt-5">
+      <h4 class="alert-heading mb-3">Unexpected Error Occurred</h4>
+      <p>We're sorry, but something went wrong. Please try again later.</p>
+      <hr />
+      <p class="mb-0">
+        If the problem persists, please contact support team for assistance.
+      </p>
+    </div>
+  </ng-template>
 </div>
