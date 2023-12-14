@@ -2,7 +2,12 @@
   <h1 class="my-5">All Articles</h1>
 
   <ng-container *ngIf="articles">
-    <div *ngFor="let article of articles" class="card mb-4" role="button">
+    <div
+      *ngFor="let article of articles"
+      class="card mb-4"
+      role="button"
+      (click)="onCardClick(article)"
+    >
       <div class="card-header">
         {{ article.title }}
       </div>

@@ -21,19 +21,40 @@ public class ArticleController : ControllerBase
     public IEnumerable<ArticleDto> GetArticles()
     {
         IEnumerable<Article> articles = _entityFramework.Articles.ToList<Article>();
-        List<ArticleDto> response = new List<ArticleDto>();
-
+        
+        List<ArticleDto> articleDtoList = new List<ArticleDto>();
         foreach(Article article in articles)
         {
-            response.Add(new ArticleDto
-            {
-                ArticleId = article.ArticleId,
-                Title = article.Title,
-                Description = article.Description,
-                CreatedAt = article.CreatedAt
-            });
+            articleDtoList.Add(getArticleDto(article));
         }
 
-        return response;
+        return articleDtoList;
     }
+
+    [HttpGet("GetSingleArticle/{articleId}")]
+    public ArticleDto GetSingleArticle(int articleId)
+    {
+        Article? article = _entityFramework.Articles
+            .Where(a => a.ArticleId == articleId)
+            .FirstOrDefault<Article>();
+         
+        if (article == null)
+        {
+            throw new Exception("Failed to get article");
+        }
+
+
+        return getArticleDto(article);
+    }
+
+    private ArticleDto getArticleDto(Article article)
+    {
+        return new ArticleDto
+        {
+            ArticleId = article.ArticleId,
+            Title = article.Title,
+            Description = article.Description,
+            CreatedAt = article.CreatedAt
+        };
+    } 
 }

@@ -23,4 +23,8 @@ export class ArticleListComponent implements OnInit {
       },
     });
   }
+
+  onCardClick(article: Article): void {
+    console.log('Article clicked:', article);
+  }
 }
