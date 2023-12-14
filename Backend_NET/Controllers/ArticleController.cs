@@ -27,6 +27,7 @@ public class ArticleController : ControllerBase
         {
             response.Add(new ArticleDto
             {
+                ArticleId = article.ArticleId,
                 Title = article.Title,
                 Description = article.Description,
                 CreatedAt = article.CreatedAt
