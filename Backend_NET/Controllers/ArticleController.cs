@@ -54,6 +54,7 @@ public class ArticleController : ControllerBase
             ArticleId = article.ArticleId,
             Title = article.Title,
             Description = article.Description,
+            ArticleType = article.ArticleType,
             CreatedAt = article.CreatedAt
         };
     } 
