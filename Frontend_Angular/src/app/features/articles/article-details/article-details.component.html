@@ -1,1 +1,13 @@
-<h1>{{ articleId }}</h1>
+<div class="container">
+  <a [routerLink]="['/']" class="btn btn-primary my-5"
+    >Return to All Articles</a
+  >
+
+  <ng-container *ngIf="articleDetails">
+    <h1 class="mb-5">{{ articleDetails.title }}</h1>
+    <p>{{ articleDetails.description }}</p>
+    <footer class="blockquote-footer mt-5">
+      {{ articleDetails.createdAt | date : "yyyy-MM-dd" }}
+    </footer>
+  </ng-container>
+</div>
