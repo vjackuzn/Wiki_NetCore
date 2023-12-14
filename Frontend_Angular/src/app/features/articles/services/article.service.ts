@@ -14,4 +14,10 @@ export class ArticleService {
       'http://localhost:5070/Article/GetArticles'
     );
   }
+
+  getArticleDetails(articleId: number): Observable<Article> {
+    return this.http.get<Article>(
+      `http://localhost:5070/Article/GetSingleArticle/${articleId}`
+    );
+  }
 }

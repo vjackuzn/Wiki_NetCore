@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../services/article.service';
 import { Article } from '../models/article.model';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-article-list',
@@ -12,19 +13,22 @@ import { CommonModule } from '@angular/common';
   providers: [ArticleService],
 })
 export class ArticleListComponent implements OnInit {
-  articles?: Article[];
+  articles: Article[] | undefined;
 
-  constructor(private articleService: ArticleService) {}
+  constructor(private articleService: ArticleService, private router: Router) {}
 
   ngOnInit(): void {
     this.articleService.getAllArticles().subscribe({
       next: (response) => {
         this.articles = response;
       },
+      error: (err) => {
+        console.error('Error fetching list of articles:', err);
+      },
     });
   }
 
   onCardClick(article: Article): void {
-    console.log('Article clicked:', article);
+    this.router.navigate(['/articles', article.articleId]);
   }
 }

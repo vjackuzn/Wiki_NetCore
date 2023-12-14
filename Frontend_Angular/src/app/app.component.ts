@@ -10,7 +10,7 @@ import { NavbarComponent } from './core/components/navbar/navbar.component';
   standalone: true,
   imports: [CommonModule, RouterOutlet, HttpClientModule, NavbarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'Wiki';
