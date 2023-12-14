@@ -36,6 +36,6 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   }
 
   onCardClick(article: Article): void {
-    this.router.navigate(['/articles', article.articleId]);
+    this.router.navigate(['/articles/list', article.articleId]);
   }
 }

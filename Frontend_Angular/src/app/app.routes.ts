@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ArticleListComponent } from './features/articles/article-list/article-list.component';
 import { ArticleDetailsComponent } from './features/articles/article-details/article-details.component';
+import { AddArticleComponent } from './features/articles/add-article/add-article.component';
 
 export const routes: Routes = [
   {
@@ -8,7 +9,11 @@ export const routes: Routes = [
     component: ArticleListComponent,
   },
   {
-    path: 'articles/:id',
+    path: 'articles/list/:id',
     component: ArticleDetailsComponent,
+  },
+  {
+    path: 'articles/add',
+    component: AddArticleComponent,
   },
 ];
