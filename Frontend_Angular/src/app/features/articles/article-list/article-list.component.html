@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="my-5">All Articles</h1>
 
-  <ng-container *ngIf="articles">
+  <ng-container *ngIf="articles$ | async as articles">
     <div
       *ngFor="let article of articles"
       class="card mb-4"

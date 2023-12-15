@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../services/article.service';
 import { Article } from '../models/article.model';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-article-list',
@@ -13,26 +13,13 @@ import { Subscription } from 'rxjs';
   styleUrl: './article-list.component.css',
   providers: [ArticleService],
 })
-export class ArticleListComponent implements OnInit, OnDestroy {
-  articles: Article[] | undefined;
-
-  private articleListSubscription: Subscription | undefined;
+export class ArticleListComponent implements OnInit {
+  articles$?: Observable<Article[]>;
 
   constructor(private articleService: ArticleService, private router: Router) {}
 
   ngOnInit(): void {
-    this.articleService.getAllArticles().subscribe({
-      next: (response) => {
-        this.articles = response;
-      },
-      error: (err) => {
-        console.error('Error fetching list of articles:', err);
-      },
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.articleListSubscription?.unsubscribe();
+    this.articles$ = this.articleService.getAllArticles();
   }
 
   onCardClick(article: Article): void {
