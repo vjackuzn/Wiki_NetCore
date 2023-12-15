@@ -1,21 +1,23 @@
 <div class="container">
-  <ng-container *ngIf="articles">
+  <ng-container *ngIf="articlesToDisplay">
     <div class="d-flex align-items-center justify-content-between">
       <h1 class="my-5">All Articles</h1>
 
-      <form class="d-flex justify-content-end">
+      <div class="d-flex justify-content-end">
         <input
           class="form-control me-2"
           type="search"
           placeholder="Search"
           aria-label="Search"
+          name="search"
+          [(ngModel)]="searchString"
+          (input)="onSearchChange()"
         />
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
-      </form>
+      </div>
     </div>
 
     <div
-      *ngFor="let article of articles"
+      *ngFor="let article of articlesToDisplay"
       class="card mb-4"
       role="button"
       (click)="onCardClick(article)"
