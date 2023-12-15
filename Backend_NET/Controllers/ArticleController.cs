@@ -1,3 +1,4 @@
+using AutoMapper;
 using Backend_NET.Data;
 using Backend_NET.Dtos;
 using Backend_NET.Models;
@@ -11,10 +12,14 @@ namespace DotnetAPIProject.Controllers;
 public class ArticleController : ControllerBase
 {
     DataContext _entityFramework;
+    IMapper _mapper;
 
     public ArticleController(IConfiguration config)
     {
         _entityFramework = new DataContext(config);
+        _mapper = new Mapper(new MapperConfiguration(cfg => {
+            cfg.CreateMap<ArticleToAddDto, Article>();
+        }));
     }
 
     [HttpGet("GetArticles")]
@@ -45,6 +50,22 @@ public class ArticleController : ControllerBase
 
 
         return getArticleDto(article);
+    }
+
+    [HttpPost("AddArticle")]
+    public IActionResult AddArticle(ArticleToAddDto article)
+    {
+        Article articleDb = _mapper.Map<Article>(article);
+
+        _entityFramework.Add(articleDb);
+
+        if (_entityFramework.SaveChanges() == 0)
+        {
+            throw new Exception("Failed to Add Article");
+           
+        }
+        
+        return Ok();
     }
 
     private ArticleDto getArticleDto(Article article)
