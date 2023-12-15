@@ -18,11 +18,7 @@ export class AddArticleComponent implements OnDestroy {
 
   private addArticleSubscription: Subscription | undefined;
 
-  constructor(
-    private articleService: ArticleService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {
+  constructor(private articleService: ArticleService, private router: Router) {
     this.model = {
       title: '',
       description: '',
