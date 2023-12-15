@@ -38,6 +38,7 @@ export class AddArticleComponent implements OnDestroy {
   onFormSubmit() {
     if (this.isAnyFieldEmpty()) {
       alert('Please fill in all the fields.');
+      return;
     }
 
     this.addArticleSubscription = this.articleService
