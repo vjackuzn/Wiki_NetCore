@@ -1,7 +1,19 @@
 <div class="container">
-  <h1 class="my-5">All Articles</h1>
+  <ng-container *ngIf="articles">
+    <div class="d-flex align-items-center justify-content-between">
+      <h1 class="my-5">All Articles</h1>
 
-  <ng-container *ngIf="articles$ | async as articles">
+      <form class="d-flex justify-content-end">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </form>
+    </div>
+
     <div
       *ngFor="let article of articles"
       class="card mb-4"
