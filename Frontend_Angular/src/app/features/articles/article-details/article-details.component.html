@@ -1,5 +1,5 @@
 <div class="container">
-  <ng-container *ngIf="articleDetails; else errorTemplate">
+  <ng-container *ngIf="articleDetails">
     <a [routerLink]="['/']" class="btn btn-primary my-5"
       >Return to All Articles</a
     >
@@ -10,7 +10,7 @@
     </footer>
   </ng-container>
 
-  <ng-template #errorTemplate>
+  <ng-container *ngIf="isGetRecordFailed">
     <div class="alert alert-danger mt-5">
       <h4 class="alert-heading mb-3">Unexpected Error Occurred</h4>
       <p>We're sorry, but something went wrong. Please try again later.</p>
@@ -19,5 +19,5 @@
         If the problem persists, please contact support team for assistance.
       </p>
     </div>
-  </ng-template>
+  </ng-container>
 </div>

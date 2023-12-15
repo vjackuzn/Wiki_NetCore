@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 export class ArticleDetailsComponent implements OnInit, OnDestroy {
   articleId: number | null | undefined;
   articleDetails: Article | undefined;
+  isGetRecordFailed: boolean = false;
 
   private articleDetailsSubscription: Subscription | undefined;
 
@@ -35,8 +36,8 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
           next: (response) => {
             this.articleDetails = response;
           },
-          error: (err) => {
-            console.error('Error fetching article details:', err);
+          error: () => {
+            this.isGetRecordFailed = true;
           },
         });
     }
