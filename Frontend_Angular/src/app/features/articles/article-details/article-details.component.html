@@ -4,7 +4,7 @@
       >Return to All Articles</a
     >
     <h1 class="mb-5">{{ articleDetails.title }}</h1>
-    <p>{{ articleDetails.description }}</p>
+    <p [innerHTML]="articleDetails.description | newline"></p>
     <footer class="blockquote-footer mt-5">
       {{ articleDetails.createdAt | date }}
     </footer>

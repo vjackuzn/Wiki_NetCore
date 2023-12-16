@@ -4,11 +4,12 @@ import { ArticleService } from '../services/article.service';
 import { Article } from '../models/article.model';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { NewlinePipe } from '../../../shared/pipes/newline.pipe';
 
 @Component({
   selector: 'app-article-details',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NewlinePipe],
   templateUrl: './article-details.component.html',
   styleUrl: './article-details.component.css',
   providers: [ArticleService],
