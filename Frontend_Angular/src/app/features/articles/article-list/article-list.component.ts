@@ -18,6 +18,8 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   articlesFromAPI?: Article[];
   searchString: string = '';
   articlesToDisplay?: Article[];
+  filterByType: string = '';
+  filterByDate: string = '';
 
   private articleListSubscription?: Subscription;
 
@@ -43,17 +45,32 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/articles/list', article.articleId]);
   }
 
-  onSearchChange(): void {
+  clearArticleTypeSelection(): void {
+    this.filterByType = '';
+    this.onFilterOrSearchChange();
+  }
+
+  onFilterOrSearchChange(): void {
     if (!this.articlesFromAPI) {
       return;
     }
 
-    this.articlesToDisplay = this.articlesFromAPI.filter(
-      (article) =>
+    this.articlesToDisplay = this.articlesFromAPI.filter((article) => {
+      const matchesType = this.filterByType
+        ? article.articleType === this.filterByType
+        : true;
+
+      const matchesDate = this.filterByDate
+        ? article.createdAt.toString().split('T')[0] === this.filterByDate
+        : true;
+
+      const matchesSearch =
         article.title.toLowerCase().includes(this.searchString.toLowerCase()) ||
         article.description
           .toLowerCase()
-          .includes(this.searchString.toLowerCase())
-    );
+          .includes(this.searchString.toLowerCase());
+
+      return matchesType && matchesDate && matchesSearch;
+    });
   }
 }

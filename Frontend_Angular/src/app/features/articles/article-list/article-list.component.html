@@ -1,18 +1,54 @@
 <div class="container">
   <ng-container *ngIf="articlesToDisplay">
-    <div class="d-flex align-items-center justify-content-between">
-      <h1 class="my-5">All Articles</h1>
+    <div class="row align-items-center my-5">
+      <div class="col-md-5">
+        <h1>All Articles</h1>
+      </div>
 
-      <div class="d-flex justify-content-end">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          name="search"
-          [(ngModel)]="searchString"
-          (input)="onSearchChange()"
-        />
+      <div class="col-md-7 d-flex justify-content-end">
+        <div class="me-4">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            name="search"
+            [(ngModel)]="searchString"
+            (input)="onFilterOrSearchChange()"
+          />
+        </div>
+        <div class="d-flex align-items-end me-2"><h5>Filter by:</h5></div>
+        <div class="me-2 d-flex">
+          <select
+            class="form-select"
+            id="articleType"
+            name="articleType"
+            [(ngModel)]="filterByType"
+            (change)="onFilterOrSearchChange()"
+          >
+            <option value="" selected disabled hidden>Article type...</option>
+            <option value="Support issue">Support issue</option>
+            <option value="Technical issue">Technical issue</option>
+          </select>
+          <div
+            class="align-self-center mx-2"
+            role="button"
+            (click)="clearArticleTypeSelection()"
+          >
+            X
+          </div>
+        </div>
+
+        <div class="me-2">
+          <input
+            type="date"
+            id="createdAt"
+            class="form-control"
+            name="createdAt"
+            [(ngModel)]="filterByDate"
+            (change)="onFilterOrSearchChange()"
+          />
+        </div>
       </div>
     </div>
 
@@ -32,7 +68,7 @@
             }}{{ article.description.length > 280 ? "..." : "" }}
           </p>
           <footer class="blockquote-footer mt-3">
-            {{ article.createdAt | date : "yyyy-MM-dd" }}
+            {{ article.createdAt | date }}
           </footer>
         </blockquote>
       </div>
