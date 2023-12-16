@@ -4,7 +4,7 @@ import { AddArticleRequest } from '../models/add-article-request.model';
 import { ArticleService } from '../services/article.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ARTICLE_TYPES } from '../../../shared/shared-constants';
+import { ARTICLE_TYPES } from '@shared/shared-constants';
 import { CommonModule } from '@angular/common';
 
 @Component({

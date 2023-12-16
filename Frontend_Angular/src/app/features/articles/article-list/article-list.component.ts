@@ -5,13 +5,12 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { ARTICLE_TYPES } from '../../../shared/shared-constants';
-import { NewlinePipe } from '../../../shared/pipes/newline.pipe';
+import { ARTICLE_TYPES } from '@shared/shared-constants';
 
 @Component({
   selector: 'app-article-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, NewlinePipe],
+  imports: [CommonModule, FormsModule],
   templateUrl: './article-list.component.html',
   styleUrl: './article-list.component.css',
   providers: [ArticleService],

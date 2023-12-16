@@ -4,7 +4,7 @@ import { ArticleService } from '../services/article.service';
 import { Article } from '../models/article.model';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { NewlinePipe } from '../../../shared/pipes/newline.pipe';
+import { NewlinePipe } from '@shared/pipes/newline.pipe';
 
 @Component({
   selector: 'app-article-details',
