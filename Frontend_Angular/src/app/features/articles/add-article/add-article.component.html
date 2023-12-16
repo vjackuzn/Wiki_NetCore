@@ -26,8 +26,9 @@
             [(ngModel)]="model.articleType"
           >
             <option value="" selected disabled hidden>Choose type...</option>
-            <option value="Support issue">Support issue</option>
-            <option value="Technical issue">Technical issue</option>
+            <option *ngFor="let type of articleTypes" [value]="type.value">
+              {{ type.label }}
+            </option>
           </select>
         </div>
       </div>

@@ -2,18 +2,21 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AddArticleRequest } from '../models/add-article-request.model';
 import { ArticleService } from '../services/article.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ARTICLE_TYPES } from '../../../shared/shared-constants';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-article',
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './add-article.component.html',
   styleUrl: './add-article.component.css',
   providers: [ArticleService],
 })
 export class AddArticleComponent implements OnDestroy {
+  articleTypes = ARTICLE_TYPES;
   model: AddArticleRequest;
 
   private addArticleSubscription: Subscription | undefined;

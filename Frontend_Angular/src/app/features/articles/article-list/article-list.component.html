@@ -27,8 +27,9 @@
             (change)="onFilterOrSearchChange()"
           >
             <option value="" selected disabled hidden>Article type...</option>
-            <option value="Support issue">Support issue</option>
-            <option value="Technical issue">Technical issue</option>
+            <option *ngFor="let type of articleTypes" [value]="type.value">
+              {{ type.label }}
+            </option>
           </select>
           <div
             class="align-self-center mx-2"
